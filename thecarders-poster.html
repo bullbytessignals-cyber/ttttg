@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TheCarders.Shop — Official Poster</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap');
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --gold:   #f0c040;
+      --gold2:  #ffd770;
+      --blue:   #00cfff;
+      --dark:   #050a14;
+      --mid:    #0b1628;
+      --card1:  #0d2035;
+      --card2:  #102040;
+      --glow:   rgba(0, 207, 255, 0.55);
+      --ggold:  rgba(240, 192, 64, 0.6);
+    }
+
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      background: var(--dark);
+      font-family: 'Rajdhani', sans-serif;
+    }
+
+    /* ── SCENE ── */
+    .scene {
+      width: 100vw; height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1200px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* animated grid floor */
+    .grid-floor {
+      position: absolute;
+      bottom: -60px; left: -20%;
+      width: 140%; height: 60%;
+      background:
+        linear-gradient(transparent 0%, rgba(0,207,255,0.04) 100%),
+        repeating-linear-gradient(90deg, rgba(0,207,255,0.07) 0 1px, transparent 1px 80px),
+        repeating-linear-gradient(0deg,  rgba(0,207,255,0.07) 0 1px, transparent 1px 80px);
+      transform: rotateX(60deg);
+      transform-origin: bottom center;
+      animation: gridPulse 6s ease-in-out infinite alternate;
+    }
+    @keyframes gridPulse {
+      from { opacity: 0.6; }
+      to   { opacity: 1.0; }
+    }
+
+    /* particles */
+    .particles { position: absolute; inset: 0; pointer-events: none; }
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--blue);
+      opacity: 0;
+      animation: floatUp linear infinite;
+    }
+    @keyframes floatUp {
+      0%   { opacity: 0; transform: translateY(0) scale(0.5); }
+      10%  { opacity: 0.8; }
+      90%  { opacity: 0.4; }
+      100% { opacity: 0; transform: translateY(-90vh) scale(1.2); }
+    }
+
+    /* ── POSTER CARD ── */
+    .poster-wrap {
+      position: relative;
+      width: min(560px, 92vw);
+      animation: floatPoster 5s ease-in-out infinite;
+      transform-style: preserve-3d;
+    }
+    @keyframes floatPoster {
+      0%, 100% { transform: rotateX(4deg) rotateY(-4deg) translateY(0); }
+      50%       { transform: rotateX(-2deg) rotateY(4deg) translateY(-18px); }
+    }
+
+    .poster {
+      position: relative;
+      background: linear-gradient(145deg, var(--card1), var(--card2) 60%, #091a30);
+      border-radius: 24px;
+      padding: 52px 40px 44px;
+      text-align: center;
+      transform-style: preserve-3d;
+      box-shadow:
+        0 0 0 1px rgba(0,207,255,0.18),
+        0 0 60px rgba(0,207,255,0.18),
+        0 40px 80px rgba(0,0,0,0.7),
+        inset 0 1px 0 rgba(255,255,255,0.06);
+      overflow: hidden;
+    }
+
+    /* glossy top shine */
+    .poster::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(130deg, rgba(255,255,255,0.07) 0%, transparent 50%);
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    /* edge glow border animation */
+    .poster::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 26px;
+      background: linear-gradient(135deg, var(--blue), var(--gold), var(--blue), var(--gold));
+      background-size: 300% 300%;
+      animation: borderSpin 4s linear infinite;
+      z-index: -1;
+    }
+    @keyframes borderSpin {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ── LOGO CHIP ── */
+    .logo-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0,207,255,0.09);
+      border: 1px solid rgba(0,207,255,0.3);
+      border-radius: 50px;
+      padding: 6px 18px;
+      margin-bottom: 28px;
+    }
+    .chip-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--blue);
+      box-shadow: 0 0 8px var(--blue);
+      animation: blink 1.6s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.3; }
+    }
+    .chip-text {
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: var(--blue);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* ── FLOATING CARDS (decorative) ── */
+    .deco-cards {
+      position: relative;
+      height: 140px;
+      margin-bottom: 32px;
+      transform-style: preserve-3d;
+    }
+    .deco-card {
+      position: absolute;
+      width: 190px; height: 112px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #0e2a45, #1a3a5c);
+      border: 1px solid rgba(0,207,255,0.25);
+      box-shadow:
+        0 12px 40px rgba(0,0,0,0.5),
+        0 0 20px rgba(0,207,255,0.12);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 14px 16px;
+      overflow: hidden;
+      transform-style: preserve-3d;
+    }
+    .deco-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(255,255,255,0.06) 0%, transparent 60%);
+      border-radius: inherit;
+    }
+    /* card EMV chip */
+    .card-chip {
+      width: 32px; height: 24px;
+      border-radius: 5px;
+      background: linear-gradient(135deg, var(--gold2), #c8960a);
+      box-shadow: 0 0 8px var(--ggold);
+      position: relative;
+      overflow: hidden;
+    }
+    .card-chip::after {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border: 1px solid rgba(0,0,0,0.2);
+      border-radius: 3px;
+    }
+    .card-number {
+      font-family: 'Orbitron', monospace;
+      font-size: 9px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 1.5px;
+    }
+    .card-brand {
+      font-size: 10px;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: right;
+    }
+    /* holographic stripe */
+    .holo-stripe {
+      position: absolute;
+      top: 0; right: 0;
+      width: 50%; height: 100%;
+      background: linear-gradient(90deg,
+        transparent,
+        rgba(0,207,255,0.05) 30%,
+        rgba(240,192,64,0.07) 60%,
+        rgba(0,207,255,0.04) 80%,
+        transparent);
+      animation: holoShift 3s ease-in-out infinite alternate;
+    }
+    @keyframes holoShift {
+      from { opacity: 0.5; transform: translateX(-10px); }
+      to   { opacity: 1.0; transform: translateX(10px); }
+    }
+
+    .card-left  {
+      left: 50%; top: 10px;
+      transform: translate(-140%, 0) rotateY(18deg) rotateZ(-6deg);
+      animation: cardFloat1 4s ease-in-out infinite;
+      z-index: 1;
+    }
+    .card-center {
+      left: 50%; top: 0;
+      transform: translate(-50%, 0) rotateY(0deg) rotateZ(0deg);
+      animation: cardFloat2 4s ease-in-out infinite;
+      z-index: 3;
+      box-shadow:
+        0 16px 50px rgba(0,0,0,0.6),
+        0 0 30px rgba(0,207,255,0.22);
+    }
+    .card-right {
+      left: 50%; top: 10px;
+      transform: translate(40%, 0) rotateY(-18deg) rotateZ(6deg);
+      animation: cardFloat3 4s ease-in-out infinite;
+      z-index: 2;
+    }
+    @keyframes cardFloat1 {
+      0%,100% { transform: translate(-140%, 0) rotateY(18deg) rotateZ(-6deg) translateY(0); }
+      50%      { transform: translate(-140%, 0) rotateY(22deg) rotateZ(-8deg) translateY(-6px); }
+    }
+    @keyframes cardFloat2 {
+      0%,100% { transform: translate(-50%, 0) rotateY(0deg) rotateZ(0deg) translateY(0); }
+      50%      { transform: translate(-50%, 0) rotateY(3deg) rotateZ(1deg) translateY(-10px); }
+    }
+    @keyframes cardFloat3 {
+      0%,100% { transform: translate(40%, 0) rotateY(-18deg) rotateZ(6deg) translateY(0); }
+      50%      { transform: translate(40%, 0) rotateY(-22deg) rotateZ(8deg) translateY(-6px); }
+    }
+
+    /* ── TITLE ── */
+    .poster-title {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(28px, 6vw, 48px);
+      font-weight: 900;
+      letter-spacing: 2px;
+      line-height: 1.1;
+      margin-bottom: 6px;
+      position: relative;
+    }
+    .title-the {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.55em;
+      letter-spacing: 6px;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .title-main {
+      background: linear-gradient(90deg, var(--gold2) 0%, #fff 40%, var(--blue) 80%, var(--gold2) 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 4s linear infinite;
+      display: block;
+      text-shadow: none;
+      filter: drop-shadow(0 0 18px rgba(0,207,255,0.5));
+    }
+    @keyframes shimmer {
+      from { background-position: 0% center; }
+      to   { background-position: 200% center; }
+    }
+    .title-shop {
+      color: var(--gold);
+      font-size: 0.38em;
+      letter-spacing: 10px;
+      display: block;
+      margin-top: 4px;
+      text-shadow: 0 0 12px var(--ggold);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 22px 0;
+    }
+    .div-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,207,255,0.4), transparent);
+    }
+    .div-diamond {
+      width: 8px; height: 8px;
+      border: 1px solid var(--gold);
+      transform: rotate(45deg);
+      box-shadow: 0 0 8px var(--ggold);
+    }
+
+    /* ── TAGLINE ── */
+    .tagline {
+      font-size: clamp(13px, 2.5vw, 16px);
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    .tagline em {
+      color: var(--blue);
+      font-style: normal;
+    }
+
+    /* ── FEATURE PILLS ── */
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .feat-pill {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(0,207,255,0.07);
+      border: 1px solid rgba(0,207,255,0.2);
+      border-radius: 50px;
+      padding: 7px 15px;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .feat-pill:hover {
+      background: rgba(0,207,255,0.15);
+      border-color: rgba(0,207,255,0.5);
+      color: #fff;
+      box-shadow: 0 0 14px rgba(0,207,255,0.2);
+    }
+    .feat-icon { font-size: 14px; }
+
+    /* ── CTA BUTTON ── */
+    .cta-wrap { position: relative; display: inline-block; }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #0070a8, #0090d0);
+      color: #fff;
+      font-family: 'Orbitron', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 16px 38px;
+      border-radius: 50px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        0 8px 32px rgba(0,144,208,0.4),
+        0 0 0 1px rgba(0,207,255,0.3),
+        inset 0 1px 0 rgba(255,255,255,0.15);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cta-btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow:
+        0 14px 44px rgba(0,144,208,0.55),
+        0 0 0 1px rgba(0,207,255,0.6),
+        inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+    .cta-btn::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -60%;
+      width: 60%; height: 200%;
+      background: rgba(255,255,255,0.15);
+      transform: skewX(-20deg);
+      animation: btnShine 3s ease-in-out infinite;
+    }
+    @keyframes btnShine {
+      0%   { left: -60%; opacity: 0; }
+      20%  { opacity: 1; }
+      40%  { left: 120%; opacity: 0; }
+      100% { left: 120%; opacity: 0; }
+    }
+    .cta-arrow { font-size: 16px; }
+
+    /* pulse ring around button */
+    .cta-ring {
+      position: absolute;
+      inset: -6px;
+      border-radius: 50px;
+      border: 1px solid rgba(0,207,255,0.4);
+      animation: ringPulse 2s ease-out infinite;
+      pointer-events: none;
+    }
+    @keyframes ringPulse {
+      0%   { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(1.1); opacity: 0; }
+    }
+
+    /* ── URL BADGE ── */
+    .url-badge {
+      margin-top: 22px;
+      font-size: 13px;
+      letter-spacing: 3px;
+      color: rgba(255,255,255,0.3);
+      font-family: 'Orbitron', monospace;
+    }
+    .url-badge span {
+      color: var(--gold);
+      text-shadow: 0 0 8px var(--ggold);
+    }
+
+    /* ── CORNER ACCENTS ── */
+    .corner {
+      position: absolute;
+      width: 28px; height: 28px;
+      opacity: 0.5;
+    }
+    .corner-tl { top: 14px; left: 14px; border-top: 2px solid var(--blue); border-left: 2px solid var(--blue); border-radius: 2px 0 0 0; }
+    .corner-tr { top: 14px; right: 14px; border-top: 2px solid var(--blue); border-right: 2px solid var(--blue); border-radius: 0 2px 0 0; }
+    .corner-bl { bottom: 14px; left: 14px; border-bottom: 2px solid var(--blue); border-left: 2px solid var(--blue); border-radius: 0 0 0 2px; }
+    .corner-br { bottom: 14px; right: 14px; border-bottom: 2px solid var(--blue); border-right: 2px solid var(--blue); border-radius: 0 0 2px 0; }
+
+    /* ── AMBIENT GLOW ORBS ── */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: -1;
+    }
+    .orb1 { width: 500px; height: 500px; background: rgba(0,100,200,0.2); top: -200px; left: -200px; animation: orbFloat1 10s ease-in-out infinite; }
+    .orb2 { width: 400px; height: 400px; background: rgba(240,192,64,0.1); bottom: -150px; right: -100px; animation: orbFloat2 12s ease-in-out infinite; }
+    .orb3 { width: 300px; height: 300px; background: rgba(0,207,255,0.12); top: 40%; left: 50%; transform: translate(-50%,-50%); animation: orbFloat3 8s ease-in-out infinite; }
+    @keyframes orbFloat1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(40px,30px)} }
+    @keyframes orbFloat2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-30px,-40px)} }
+    @keyframes orbFloat3 { 0%,100%{transform:translate(-50%,-50%) scale(1)} 50%{transform:translate(-50%,-50%) scale(1.2)} }
+
+    /* ── SCAN LINE ── */
+    .scanline {
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(0,0,0,0.03) 3px,
+        rgba(0,0,0,0.03) 4px
+      );
+      pointer-events: none;
+      border-radius: inherit;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ambient orbs -->
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<!-- particles -->
+<div class="particles" id="particles"></div>
+
+<!-- grid floor -->
+<div class="grid-floor"></div>
+
+<div class="scene">
+  <div class="poster-wrap">
+    <div class="poster">
+
+      <!-- scanline texture -->
+      <div class="scanline"></div>
+
+      <!-- corner accents -->
+      <div class="corner corner-tl"></div>
+      <div class="corner corner-tr"></div>
+      <div class="corner corner-bl"></div>
+      <div class="corner corner-br"></div>
+
+      <!-- status chip -->
+      <div class="logo-chip">
+        <div class="chip-dot"></div>
+        <span class="chip-text">Official Store</span>
+      </div>
+
+      <!-- floating deco cards -->
+      <div class="deco-cards">
+        <!-- left card -->
+        <div class="deco-card card-left">
+          <div class="card-chip"></div>
+          <div class="card-number">•••• •••• •••• 4821</div>
+          <div class="card-brand">Premium</div>
+          <div class="holo-stripe"></div>
+        </div>
+        <!-- center card (highlighted) -->
+        <div class="deco-card card-center">
+          <div class="card-chip"></div>
+          <div class="card-number">•••• •••• •••• 7744</div>
+          <div class="card-brand">Elite</div>
+          <div class="holo-stripe"></div>
+        </div>
+        <!-- right card -->
+        <div class="deco-card card-right">
+          <div class="card-chip"></div>
+          <div class="card-number">•••• •••• •••• 3390</div>
+          <div class="card-brand">Standard</div>
+          <div class="holo-stripe"></div>
+        </div>
+      </div>
+
+      <!-- title -->
+      <div class="poster-title">
+        <span class="title-the">THE</span>
+        <span class="title-main">CARDERS</span>
+        <span class="title-shop">.SHOP</span>
+      </div>
+
+      <!-- divider -->
+      <div class="divider">
+        <div class="div-line"></div>
+        <div class="div-diamond"></div>
+        <div class="div-line"></div>
+      </div>
+
+      <!-- tagline -->
+      <p class="tagline">
+        Your <em>premium destination</em> for<br>
+        exclusive cards &amp; digital solutions
+      </p>
+
+      <!-- feature pills -->
+      <div class="features">
+        <div class="feat-pill"><span class="feat-icon">⚡</span> Fast Delivery</div>
+        <div class="feat-pill"><span class="feat-icon">🔒</span> Secure &amp; Private</div>
+        <div class="feat-pill"><span class="feat-icon">💎</span> Premium Quality</div>
+        <div class="feat-pill"><span class="feat-icon">🌐</span> Worldwide Access</div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-wrap">
+        <div class="cta-ring"></div>
+        <a class="cta-btn" href="https://thecarders.shop" target="_blank">
+          Visit Store
+          <span class="cta-arrow">→</span>
+        </a>
+      </div>
+
+      <!-- url badge -->
+      <p class="url-badge">www.<span>thecarders</span>.shop</p>
+
+    </div><!-- /poster -->
+  </div><!-- /poster-wrap -->
+</div><!-- /scene -->
+
+<script>
+  // Generate floating particles
+  const container = document.getElementById('particles');
+  const colors = ['#00cfff','#ffd770','#ffffff'];
+  for (let i = 0; i < 55; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 4 + 1;
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    Object.assign(p.style, {
+      width:  size + 'px',
+      height: size + 'px',
+      background: color,
+      boxShadow: `0 0 ${size * 2}px ${color}`,
+      left: Math.random() * 100 + 'vw',
+      top:  '100vh',
+      animationDuration: (Math.random() * 12 + 8) + 's',
+      animationDelay:    (Math.random() * 12) + 's',
+    });
+    container.appendChild(p);
+  }
+
+  // Subtle mouse parallax on poster
+  const wrap = document.querySelector('.poster-wrap');
+  document.addEventListener('mousemove', e => {
+    const cx = window.innerWidth / 2;
+    const cy = window.innerHeight / 2;
+    const dx = (e.clientX - cx) / cx;
+    const dy = (e.clientY - cy) / cy;
+    wrap.style.transform = `rotateX(${-dy * 8}deg) rotateY(${dx * 8}deg)`;
+  });
+  document.addEventListener('mouseleave', () => {
+    wrap.style.transform = '';
+  });
+</script>
+</body>
+</html>
