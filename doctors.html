@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Doctors – Rafaqat Clinic, Kharian</title>
+  <meta name="description" content="Meet Dr. Faraz, Dr. Roha Anees, and Dr. Usman — the expert medical team at Rafaqat Clinic, Mohalla Satar Pura, Kharian." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <style>
+    /* Full doctor profile layout */
+    .profile-section {
+      padding: 80px 6vw;
+    }
+    .profile-section:nth-child(even) { background: var(--light); }
+    .profile-section:nth-child(odd)  { background: var(--white); }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 60px;
+      align-items: start;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .profile-grid.reverse { grid-template-columns: 1fr 320px; }
+    .profile-grid.reverse .profile-card-col { order: 2; }
+    .profile-grid.reverse .profile-info     { order: 1; }
+
+    .profile-card {
+      background: var(--white);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 90px;
+    }
+    .profile-card-top {
+      padding: 48px 32px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .profile-avatar {
+      width: 110px; height: 110px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: var(--darker);
+      margin-bottom: 18px;
+      border: 5px solid rgba(255,255,255,.4);
+    }
+    .profile-avatar.p1 { background: linear-gradient(135deg,#4fc3e8,#1a9cbf); }
+    .profile-avatar.p2 { background: linear-gradient(135deg,var(--gold),var(--gold2)); }
+    .profile-avatar.p3 { background: linear-gradient(135deg,#6fd5b3,#2eaa87); }
+
+    .profile-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    .profile-spec {
+      color: var(--teal);
+      font-size: .88rem;
+      font-weight: 500;
+      margin-top: 5px;
+    }
+    .profile-card-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0;
+    }
+    .profile-card-bottom { padding: 24px 28px; }
+    .pc-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      font-size: .86rem;
+      color: var(--muted);
+    }
+    .pc-row:last-child { margin-bottom: 0; }
+    .pc-icon {
+      width: 30px; height: 30px;
+      border-radius: 8px;
+      background: rgba(13,109,140,.09);
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .8rem;
+      flex-shrink: 0;
+    }
+
+    .profile-info {}
+    .profile-info .section-tag { text-align: left; margin-bottom: 6px; }
+    .profile-info h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      color: var(--dark);
+      margin-bottom: 18px;
+    }
+    .profile-info h2 span { color: var(--teal); }
+    .profile-info p {
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 18px;
+      font-size: .97rem;
+    }
+    .profile-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--dark);
+      margin: 28px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+    }
+    .spec-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .spec-pill {
+      background: rgba(13,109,140,.09);
+      color: var(--teal2);
+      font-size: .82rem;
+      font-weight: 500;
+      padding: 7px 16px;
+      border-radius: 50px;
+      transition: background .25s;
+    }
+    .spec-pill:hover { background: rgba(13,109,140,.18); }
+
+    /* Numbered steps */
+    .edu-list { list-style: none; }
+    .edu-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .edu-num {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--teal);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .edu-text strong { color: var(--dark); font-size: .94rem; display: block; }
+    .edu-text span   { color: var(--muted); font-size: .84rem; }
+
+    @media (max-width: 900px) {
+      .profile-grid,
+      .profile-grid.reverse { grid-template-columns: 1fr; }
+      .profile-grid.reverse .profile-card-col,
+      .profile-grid.reverse .profile-info { order: unset; }
+      .profile-card { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar" class="solid">
+  <a class="nav-logo" href="index.html">
+    <div class="nav-cross"></div>
+    <span class="nav-logo-text">Rafaqat <span>Clinic</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="doctors.html" class="active">Doctors</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div id="mobileMenu">
+  <a href="index.html"    class="mob-link">Home</a>
+  <a href="about.html"    class="mob-link">About</a>
+  <a href="doctors.html"  class="mob-link">Doctors</a>
+  <a href="services.html" class="mob-link">Services</a>
+  <a href="contact.html"  class="mob-cta">Contact Us</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="breadcrumb ph-anim d1">
+    <a href="index.html">Home</a><span>/</span> Our Doctors
+  </div>
+  <h1 class="ph-anim d2">Our <span>Medical Team</span></h1>
+  <p class="ph-anim d3">Meet the experienced, dedicated physicians who make Rafaqat Clinic the most trusted healthcare destination in Kharian.</p>
+</div>
+
+<!-- DOCTOR CARD OVERVIEW -->
+<section class="section bg-light">
+  <div class="section-header">
+    <div class="section-tag">All Doctors</div>
+    <h2 class="section-title">Currently <span>Serving</span></h2>
+    <p class="section-sub">3 qualified physicians are available at Rafaqat Clinic.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="doctors-grid">
+    <div class="doctor-card fade-up d1">
+      <div class="doc-card-header">
+        <div class="doc-avatar-big c1">F</div>
+        <div class="doc-card-name">Dr. Faraz</div>
+        <div class="doc-card-spec">General Physician</div>
+      </div>
+      <div class="doc-card-body">
+        <div class="doc-detail"><div class="doc-detail-icon">🎓</div> MBBS – Medical Graduate</div>
+        <div class="doc-detail"><div class="doc-detail-icon">🏥</div> General Medicine &amp; OPD</div>
+        <div class="doc-detail"><div class="doc-detail-icon">⏰</div> Morning &amp; Evening Shifts</div>
+        <div class="doc-tag-row">
+          <span class="doc-tag">General Medicine</span>
+          <span class="doc-tag">Fever &amp; Flu</span>
+          <span class="doc-tag">Diagnostics</span>
+        </div>
+      </div>
+      <div class="doc-card-footer">
+        <div class="avail-pill">Available</div>
+        <a href="contact.html" class="appt-btn">Book Visit</a>
+      </div>
+    </div>
+
+    <div class="doctor-card fade-up d2">
+      <div class="doc-card-header">
+        <div class="doc-avatar-big c2">R</div>
+        <div class="doc-card-name">Dr. Roha Anees</div>
+        <div class="doc-card-spec">Consultant Physician</div>
+      </div>
+      <div class="doc-card-body">
+        <div class="doc-detail"><div class="doc-detail-icon">🎓</div> MBBS, FCPS (Medicine)</div>
+        <div class="doc-detail"><div class="doc-detail-icon">🏥</div> Internal Medicine &amp; Consultation</div>
+        <div class="doc-detail"><div class="doc-detail-icon">⏰</div> Afternoon Consultations</div>
+        <div class="doc-tag-row">
+          <span class="doc-tag">Internal Medicine</span>
+          <span class="doc-tag">Women's Health</span>
+          <span class="doc-tag">Chronic Care</span>
+        </div>
+      </div>
+      <div class="doc-card-footer">
+        <div class="avail-pill">Available</div>
+        <a href="contact.html" class="appt-btn">Book Visit</a>
+      </div>
+    </div>
+
+    <div class="doctor-card fade-up d3">
+      <div class="doc-card-header">
+        <div class="doc-avatar-big c3">U</div>
+        <div class="doc-card-name">Dr. Usman</div>
+        <div class="doc-card-spec">Medical Officer</div>
+      </div>
+      <div class="doc-card-body">
+        <div class="doc-detail"><div class="doc-detail-icon">🎓</div> MBBS – Medical Officer</div>
+        <div class="doc-detail"><div class="doc-detail-icon">🏥</div> Emergency &amp; General OPD</div>
+        <div class="doc-detail"><div class="doc-detail-icon">⏰</div> Evening &amp; Emergency Shifts</div>
+        <div class="doc-tag-row">
+          <span class="doc-tag">Emergency Care</span>
+          <span class="doc-tag">Paediatrics</span>
+          <span class="doc-tag">Prescriptions</span>
+        </div>
+      </div>
+      <div class="doc-card-footer">
+        <div class="avail-pill">Available</div>
+        <a href="contact.html" class="appt-btn">Book Visit</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DR. FARAZ – FULL PROFILE -->
+<section class="profile-section">
+  <div class="profile-grid">
+    <div class="profile-card-col fade-up">
+      <div class="profile-card">
+        <div class="profile-card-top" style="background:linear-gradient(135deg,var(--teal2),var(--teal3));">
+          <div class="profile-avatar p1">F</div>
+          <div class="profile-name" style="color:var(--white);">Dr. Faraz</div>
+          <div class="profile-spec" style="color:rgba(255,255,255,.7);">General Physician</div>
+        </div>
+        <div class="profile-card-divider"></div>
+        <div class="profile-card-bottom">
+          <div class="pc-row"><div class="pc-icon">🎓</div> MBBS</div>
+          <div class="pc-row"><div class="pc-icon">⏰</div> Morning &amp; Evening Shifts</div>
+          <div class="pc-row"><div class="pc-icon">🗣️</div> Urdu · Punjabi</div>
+          <div class="pc-row"><div class="pc-icon">📍</div> Rafaqat Clinic, Kharian</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-info fade-up d2">
+      <div class="section-tag">Doctor Profile</div>
+      <h2>Dr. <span>Faraz</span></h2>
+      <p>Dr. Faraz is a dedicated general physician with a strong commitment to primary healthcare in Kharian. He joined Rafaqat Clinic to bring accessible medical care to the residents of Mohalla Satar Pura and surrounding areas.</p>
+      <p>Known for his calm demeanor and patient approach, Dr. Faraz excels in diagnosing and treating a wide range of everyday medical conditions — from infectious illnesses to chronic disease management.</p>
+
+      <div class="profile-heading">Areas of Expertise</div>
+      <div class="spec-list">
+        <span class="spec-pill">General Medicine</span>
+        <span class="spec-pill">Fever &amp; Infections</span>
+        <span class="spec-pill">Respiratory Conditions</span>
+        <span class="spec-pill">Minor Surgical Dressing</span>
+        <span class="spec-pill">Routine Prescriptions</span>
+        <span class="spec-pill">Health Screening</span>
+      </div>
+
+      <div class="profile-heading">Education &amp; Training</div>
+      <ul class="edu-list">
+        <li class="edu-item">
+          <div class="edu-num">1</div>
+          <div class="edu-text">
+            <strong>MBBS – Bachelor of Medicine &amp; Surgery</strong>
+            <span>Medical College, Punjab</span>
+          </div>
+        </li>
+        <li class="edu-item">
+          <div class="edu-num">2</div>
+          <div class="edu-text">
+            <strong>House Job – General Medicine</strong>
+            <span>Teaching Hospital, Punjab</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- DR. ROHA ANEES – FULL PROFILE -->
+<section class="profile-section">
+  <div class="profile-grid reverse">
+    <div class="profile-info fade-up">
+      <div class="section-tag">Doctor Profile</div>
+      <h2>Dr. Roha <span>Anees</span></h2>
+      <p>Dr. Roha Anees is a highly regarded consultant physician specialising in internal medicine. She brings a meticulous, evidence-based approach to each consultation, ensuring patients receive the most accurate diagnoses and effective treatments available.</p>
+      <p>Dr. Anees is particularly experienced in women's health and the management of chronic conditions, including diabetes, hypertension, and thyroid disorders. Her compassionate bedside manner has made her one of the most sought-after physicians at the clinic.</p>
+
+      <div class="profile-heading">Areas of Expertise</div>
+      <div class="spec-list">
+        <span class="spec-pill">Internal Medicine</span>
+        <span class="spec-pill">Women's Health</span>
+        <span class="spec-pill">Diabetes Management</span>
+        <span class="spec-pill">Hypertension</span>
+        <span class="spec-pill">Thyroid Disorders</span>
+        <span class="spec-pill">Chronic Disease Care</span>
+      </div>
+
+      <div class="profile-heading">Education &amp; Training</div>
+      <ul class="edu-list">
+        <li class="edu-item">
+          <div class="edu-num">1</div>
+          <div class="edu-text">
+            <strong>MBBS – Bachelor of Medicine &amp; Surgery</strong>
+            <span>Medical College, Punjab</span>
+          </div>
+        </li>
+        <li class="edu-item">
+          <div class="edu-num">2</div>
+          <div class="edu-text">
+            <strong>FCPS (Internal Medicine) – Fellow CPSP</strong>
+            <span>College of Physicians &amp; Surgeons Pakistan</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="profile-card-col fade-up d2">
+      <div class="profile-card">
+        <div class="profile-card-top" style="background:linear-gradient(135deg,#8a6e1a,#c9a84c);">
+          <div class="profile-avatar p2">R</div>
+          <div class="profile-name" style="color:var(--darker);">Dr. Roha Anees</div>
+          <div class="profile-spec" style="color:rgba(7,18,28,.65);">Consultant Physician</div>
+        </div>
+        <div class="profile-card-divider"></div>
+        <div class="profile-card-bottom">
+          <div class="pc-row"><div class="pc-icon">🎓</div> MBBS, FCPS (Medicine)</div>
+          <div class="pc-row"><div class="pc-icon">⏰</div> Afternoon Consultations</div>
+          <div class="pc-row"><div class="pc-icon">🗣️</div> Urdu · Punjabi · English</div>
+          <div class="pc-row"><div class="pc-icon">📍</div> Rafaqat Clinic, Kharian</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DR. USMAN – FULL PROFILE -->
+<section class="profile-section">
+  <div class="profile-grid">
+    <div class="profile-card-col fade-up">
+      <div class="profile-card">
+        <div class="profile-card-top" style="background:linear-gradient(135deg,#1e6b55,#2eaa87);">
+          <div class="profile-avatar p3">U</div>
+          <div class="profile-name" style="color:var(--white);">Dr. Usman</div>
+          <div class="profile-spec" style="color:rgba(255,255,255,.7);">Medical Officer</div>
+        </div>
+        <div class="profile-card-divider"></div>
+        <div class="profile-card-bottom">
+          <div class="pc-row"><div class="pc-icon">🎓</div> MBBS – Medical Officer</div>
+          <div class="pc-row"><div class="pc-icon">⏰</div> Evening &amp; Emergency Shifts</div>
+          <div class="pc-row"><div class="pc-icon">🗣️</div> Urdu · Punjabi</div>
+          <div class="pc-row"><div class="pc-icon">📍</div> Rafaqat Clinic, Kharian</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-info fade-up d2">
+      <div class="section-tag">Doctor Profile</div>
+      <h2>Dr. <span>Usman</span></h2>
+      <p>Dr. Usman serves as a Medical Officer at Rafaqat Clinic, bringing energy, professionalism, and quick decision-making skills to the evening and emergency shifts. He is highly effective in urgent care settings and is well-trusted by patients in the community.</p>
+      <p>With a strong foundation in paediatrics and general medicine, Dr. Usman is the go-to doctor for emergency consultations and after-hours patient care at the clinic.</p>
+
+      <div class="profile-heading">Areas of Expertise</div>
+      <div class="spec-list">
+        <span class="spec-pill">Emergency Care</span>
+        <span class="spec-pill">Paediatrics</span>
+        <span class="spec-pill">General OPD</span>
+        <span class="spec-pill">Acute Illness</span>
+        <span class="spec-pill">Injections &amp; Dressing</span>
+        <span class="spec-pill">Patient Follow-up</span>
+      </div>
+
+      <div class="profile-heading">Education &amp; Training</div>
+      <ul class="edu-list">
+        <li class="edu-item">
+          <div class="edu-num">1</div>
+          <div class="edu-text">
+            <strong>MBBS – Bachelor of Medicine &amp; Surgery</strong>
+            <span>Medical College, Punjab</span>
+          </div>
+        </li>
+        <li class="edu-item">
+          <div class="edu-num">2</div>
+          <div class="edu-text">
+            <strong>Medical Officer – Government Assignment</strong>
+            <span>Punjab Healthcare Commission Registered</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:linear-gradient(135deg,var(--dark),var(--teal2));padding:70px 6vw;text-align:center;">
+  <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);color:var(--white);margin-bottom:18px;">Ready to See a Doctor?</h2>
+  <p style="color:rgba(255,255,255,.55);max-width:460px;margin:0 auto 32px;line-height:1.75;">Walk into Rafaqat Clinic any time. No appointment needed. Our doctors are here for you.</p>
+  <a href="contact.html" class="btn-primary">Get Directions &amp; Hours</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="nav-logo" href="index.html">
+          <div class="nav-cross"></div>
+          <span class="nav-logo-text">Rafaqat <span>Clinic</span></span>
+        </a>
+        <p>Providing quality, compassionate healthcare to the community of Mohalla Satar Pura, Kharian.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="doctors.html">Our Doctors</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Our Doctors</h4>
+        <ul>
+          <li><a href="doctors.html">Dr. Faraz</a></li>
+          <li><a href="doctors.html">Dr. Roha Anees</a></li>
+          <li><a href="doctors.html">Dr. Usman</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2024 <span>Rafaqat Clinic</span>, Mohalla Satar Pura, Kharian. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

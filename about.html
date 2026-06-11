@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About – Rafaqat Clinic, Kharian</title>
+  <meta name="description" content="Learn about Rafaqat Clinic – our mission, values, and commitment to quality healthcare in Mohalla Satar Pura, Kharian." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <style>
+    /* ── Mission / Value cards ── */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .value-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 34px 28px;
+      border: 1px solid var(--border);
+      transition: box-shadow .3s, transform .3s;
+      text-align: center;
+    }
+    .value-card:hover { box-shadow: var(--shadow); transform: translateY(-5px); }
+    .value-icon {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: rgba(13,109,140,.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin: 0 auto 20px;
+    }
+    .value-card h3 { font-size: 1.1rem; color: var(--dark); margin-bottom: 10px; }
+    .value-card p  { color: var(--muted); font-size: .88rem; line-height: 1.75; }
+
+    /* ── Story section ── */
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .story-text h2 {
+      font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+      color: var(--dark);
+      margin-bottom: 20px;
+    }
+    .story-text h2 span { color: var(--teal); }
+    .story-text p {
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 18px;
+      font-size: .97rem;
+    }
+
+    /* ── Stats row ── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .stat-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .stat-card .s-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: var(--teal);
+      line-height: 1;
+    }
+    .stat-card .s-label {
+      color: var(--muted);
+      font-size: .82rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-top: 8px;
+    }
+
+    /* ── Testimonial ── */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .testi-card {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius);
+      padding: 30px;
+    }
+    .stars { color: var(--gold2); font-size: 1rem; margin-bottom: 14px; }
+    .testi-text { color: rgba(255,255,255,.75); font-size: .9rem; line-height: 1.75; margin-bottom: 20px; }
+    .testi-author strong { color: var(--white); font-size: .9rem; }
+    .testi-author span   { color: rgba(255,255,255,.45); font-size: .8rem; display: block; }
+
+    @media (max-width: 900px) {
+      .values-grid { grid-template-columns: repeat(2, 1fr); }
+      .story-grid  { grid-template-columns: 1fr; }
+      .stats-row   { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .values-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar" class="solid">
+  <a class="nav-logo" href="index.html">
+    <div class="nav-cross"></div>
+    <span class="nav-logo-text">Rafaqat <span>Clinic</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="doctors.html">Doctors</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div id="mobileMenu">
+  <a href="index.html"    class="mob-link">Home</a>
+  <a href="about.html"    class="mob-link">About</a>
+  <a href="doctors.html"  class="mob-link">Doctors</a>
+  <a href="services.html" class="mob-link">Services</a>
+  <a href="contact.html"  class="mob-cta">Contact Us</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="breadcrumb ph-anim d1">
+    <a href="index.html">Home</a><span>/</span> About Us
+  </div>
+  <h1 class="ph-anim d2">About <span>Rafaqat Clinic</span></h1>
+  <p class="ph-anim d3">Serving the community of Mohalla Satar Pura, Kharian with compassionate and professional medical care.</p>
+</div>
+
+<!-- OUR STORY -->
+<section class="section bg-white">
+  <div class="story-grid">
+    <div class="story-text fade-up">
+      <div class="section-tag">Our Story</div>
+      <h2>A Clinic Built on <span>Trust &amp; Care</span></h2>
+      <p>Rafaqat Clinic was established with a simple but powerful purpose: to bring reliable, professional medical care closer to the residents of Mohalla Satar Pura, Kharian. We believe that quality healthcare is a right, not a privilege.</p>
+      <p>From the very first day, our focus has been on building a clinic where patients feel genuinely cared for — a place where every consultation is thorough, every prescription is accurate, and every visit leaves you feeling looked after.</p>
+      <p>Our team of dedicated physicians — Dr. Faraz, Dr. Roha Anees, and Dr. Usman — brings a wealth of experience and a deep commitment to the community they serve.</p>
+      <a href="doctors.html" class="btn-teal" style="margin-top:8px;">Meet Our Doctors</a>
+    </div>
+
+    <div class="fade-up d2">
+      <div class="section-tag">Our Mission</div>
+      <h2 style="margin-top:0;font-size:clamp(1.5rem,3vw,2rem);color:var(--dark);margin-bottom:20px;">Putting <span style="color:var(--teal);">Patients First</span></h2>
+      <p style="color:var(--muted);line-height:1.85;margin-bottom:16px;">Our mission is to deliver accessible, compassionate, and high-quality healthcare to every individual and family in Kharian and the surrounding areas. We are committed to:</p>
+      <ul style="list-style:none;margin:0;padding:0;">
+        <li style="display:flex;gap:12px;margin-bottom:14px;color:var(--text);font-size:.94rem;">
+          <div style="width:22px;height:22px;border-radius:50%;background:rgba(13,109,140,.12);color:var(--teal);display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0;margin-top:2px;">✓</div>
+          Accurate diagnosis and evidence-based treatment
+        </li>
+        <li style="display:flex;gap:12px;margin-bottom:14px;color:var(--text);font-size:.94rem;">
+          <div style="width:22px;height:22px;border-radius:50%;background:rgba(13,109,140,.12);color:var(--teal);display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0;margin-top:2px;">✓</div>
+          Respecting patient dignity and privacy at all times
+        </li>
+        <li style="display:flex;gap:12px;margin-bottom:14px;color:var(--text);font-size:.94rem;">
+          <div style="width:22px;height:22px;border-radius:50%;background:rgba(13,109,140,.12);color:var(--teal);display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0;margin-top:2px;">✓</div>
+          Keeping care affordable for all community members
+        </li>
+        <li style="display:flex;gap:12px;margin-bottom:14px;color:var(--text);font-size:.94rem;">
+          <div style="width:22px;height:22px;border-radius:50%;background:rgba(13,109,140,.12);color:var(--teal);display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0;margin-top:2px;">✓</div>
+          Continuous improvement in clinical skills and facilities
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="section bg-light">
+  <div class="section-header">
+    <div class="section-tag">By the Numbers</div>
+    <h2 class="section-title">Clinic at a <span>Glance</span></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="stats-row">
+    <div class="stat-card fade-up d1">
+      <div class="s-num">3</div>
+      <div class="s-label">Expert Doctors</div>
+    </div>
+    <div class="stat-card fade-up d2">
+      <div class="s-num">6</div>
+      <div class="s-label">Days Open</div>
+    </div>
+    <div class="stat-card fade-up d3">
+      <div class="s-num">13h</div>
+      <div class="s-label">Daily Service Hours</div>
+    </div>
+    <div class="stat-card fade-up d4">
+      <div class="s-num">24h</div>
+      <div class="s-label">Emergency Access</div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="section bg-white">
+  <div class="section-header">
+    <div class="section-tag">Core Values</div>
+    <h2 class="section-title">What We <span>Stand For</span></h2>
+    <p class="section-sub">These principles guide every decision we make, every patient we treat.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="values-grid">
+    <div class="value-card fade-up d1">
+      <div class="value-icon">❤️</div>
+      <h3>Compassion</h3>
+      <p>Every patient is treated with empathy and genuine care. We listen before we prescribe.</p>
+    </div>
+    <div class="value-card fade-up d2">
+      <div class="value-icon">🏆</div>
+      <h3>Excellence</h3>
+      <p>We hold ourselves to the highest clinical standards in diagnosis, treatment, and follow-up.</p>
+    </div>
+    <div class="value-card fade-up d3">
+      <div class="value-icon">🤝</div>
+      <h3>Integrity</h3>
+      <p>Honest, transparent medical advice — we always put your health above everything else.</p>
+    </div>
+    <div class="value-card fade-up d1">
+      <div class="value-icon">🌍</div>
+      <h3>Community</h3>
+      <p>Deeply rooted in Satar Pura, Kharian — we are here to serve our neighbours.</p>
+    </div>
+    <div class="value-card fade-up d2">
+      <div class="value-icon">🔬</div>
+      <h3>Innovation</h3>
+      <p>Keeping up with modern medicine to deliver the most effective treatments available.</p>
+    </div>
+    <div class="value-card fade-up d3">
+      <div class="value-icon">🛡️</div>
+      <h3>Safety</h3>
+      <p>Patient safety is non-negotiable. Our clinic maintains strict hygiene and clinical protocols.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section bg-dark">
+  <div class="section-header">
+    <div class="section-tag" style="color:var(--gold2);">Patient Stories</div>
+    <h2 class="section-title light">What Our <span>Patients Say</span></h2>
+    <p class="section-sub light">Real experiences from the community we serve.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testi-card fade-up d1">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Dr. Faraz diagnosed my condition quickly and accurately. The clinic is clean and the staff is very respectful. Highly recommend!"</p>
+      <div class="testi-author">
+        <strong>Ahmed Raza</strong>
+        <span>Kharian Resident</span>
+      </div>
+    </div>
+    <div class="testi-card fade-up d2">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Dr. Roha Anees is an excellent doctor. She took time to listen and gave very thorough advice. Very happy with my visit."</p>
+      <div class="testi-author">
+        <strong>Fatima Malik</strong>
+        <span>Satar Pura, Kharian</span>
+      </div>
+    </div>
+    <div class="testi-card fade-up d3">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Dr. Usman handled my son's emergency very calmly and efficiently. We are so grateful to have such good doctors nearby."</p>
+      <div class="testi-author">
+        <strong>Muhammad Tariq</strong>
+        <span>Local Parent</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:var(--white);padding:70px 6vw;text-align:center;">
+  <div class="section-tag">Visit Us Today</div>
+  <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.7rem,3.5vw,2.4rem);color:var(--dark);margin:12px 0 18px;">Your Health, Our <span style="color:var(--teal);">Commitment</span></h2>
+  <p style="color:var(--muted);max-width:460px;margin:0 auto 32px;line-height:1.75;">Walk in any time during our clinic hours. Our doctors are ready and waiting to help you.</p>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+    <a href="doctors.html" class="btn-primary">Meet Our Doctors</a>
+    <a href="contact.html" class="btn-teal">Find Us</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="nav-logo" href="index.html">
+          <div class="nav-cross"></div>
+          <span class="nav-logo-text">Rafaqat <span>Clinic</span></span>
+        </a>
+        <p>Providing quality, compassionate healthcare to the community of Mohalla Satar Pura, Kharian.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="doctors.html">Our Doctors</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Our Doctors</h4>
+        <ul>
+          <li><a href="doctors.html">Dr. Faraz</a></li>
+          <li><a href="doctors.html">Dr. Roha Anees</a></li>
+          <li><a href="doctors.html">Dr. Usman</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2024 <span>Rafaqat Clinic</span>, Mohalla Satar Pura, Kharian. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

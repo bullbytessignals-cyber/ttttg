@@ -1,0 +1,222 @@
+/* ═══════════════════════════════════════════════════════════════
+   RAFAQAT CLINIC – ANIMATIONS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── PRELOADER ─────────────────────────────────────────────────── */
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: var(--darker);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity .65s ease, visibility .65s ease;
+}
+#preloader.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Logo block */
+.pre-logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeUpIn .8s .3s ease forwards;
+}
+
+/* Medical cross icon */
+.pre-cross {
+  width: 56px;
+  height: 56px;
+  position: relative;
+  flex-shrink: 0;
+}
+.pre-cross::before,
+.pre-cross::after {
+  content: '';
+  position: absolute;
+  background: var(--gold);
+  border-radius: 5px;
+}
+.pre-cross::before { width: 18px; height: 56px; left: 19px; top: 0; }
+.pre-cross::after  { width: 56px; height: 18px; left: 0; top: 19px; }
+
+.cross-glow {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,.4) 0%, transparent 70%);
+  animation: pulseGlow 2.2s ease-in-out infinite;
+}
+
+.pre-name h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.1;
+}
+.pre-name h1 span { color: var(--gold2); }
+.pre-name p {
+  color: rgba(255,255,255,.5);
+  font-size: .82rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+
+/* ECG heartbeat line */
+.ecg-wrap {
+  width: 340px;
+  height: 62px;
+  margin-top: 42px;
+  opacity: 0;
+  animation: fadeUpIn .6s .9s ease forwards;
+}
+.ecg-svg { width: 100%; height: 100%; overflow: visible; }
+
+.ecg-path {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: drawLine 2s 1s ease forwards;
+}
+.ecg-dot {
+  fill: var(--gold2);
+  opacity: 0;
+  transform: scale(0);
+  transform-origin: center;
+  animation: popDot .4s 2.8s cubic-bezier(.175,.885,.32,1.5) forwards;
+}
+
+/* Tagline & loader bar */
+.pre-tagline {
+  margin-top: 24px;
+  color: rgba(255,255,255,.4);
+  font-size: .76rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeUpIn .5s 2.6s ease forwards;
+}
+.pre-bar {
+  width: 240px;
+  height: 3px;
+  background: rgba(255,255,255,.1);
+  border-radius: 10px;
+  margin-top: 28px;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeUpIn .4s 1.2s ease forwards;
+}
+.pre-fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--teal), var(--gold2));
+  border-radius: 10px;
+  animation: loadBar 2s 1.3s cubic-bezier(.4,0,.2,1) forwards;
+}
+
+/* ─── HERO ENTRY ────────────────────────────────────────────────── */
+.hero-left {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+.hero-left.in {
+  animation: slideFromLeft .9s .1s ease forwards;
+}
+.hero-right {
+  opacity: 0;
+  transform: translateX(40px);
+}
+.hero-right.in {
+  animation: slideFromRight .9s .3s ease forwards;
+}
+
+/* Floating doctor card */
+.hero-card { animation: floatCard 5s ease-in-out infinite; }
+
+/* Particle elements */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(201,168,76,.22);
+  animation: riseUp linear infinite;
+}
+
+/* ─── BADGE BLINK ───────────────────────────────────────────────── */
+.hero-badge::before,
+.avail-pill::before {
+  animation: blink 1.4s ease-in-out infinite;
+}
+
+/* ─── PAGE HERO TEXT ─────────────────────────────────────────────── */
+.ph-anim {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUpIn .8s .2s ease forwards;
+}
+.ph-anim.d1 { animation-delay: .1s; }
+.ph-anim.d2 { animation-delay: .25s; }
+.ph-anim.d3 { animation-delay: .4s; }
+
+/* ─── MAP PIN BOUNCE ─────────────────────────────────────────────── */
+.map-placeholder .pin {
+  animation: bounce 2.2s ease-in-out infinite;
+}
+
+/* ─── KEYFRAMES ─────────────────────────────────────────────────── */
+@keyframes fadeUpIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideFromLeft {
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideFromRight {
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes drawLine {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes loadBar {
+  to { width: 100%; }
+}
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(1);   opacity: .5; }
+  50%       { transform: scale(1.25); opacity: 1; }
+}
+@keyframes popDot {
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .3; }
+}
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+@keyframes riseUp {
+  0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+  10%  { opacity: .8; }
+  90%  { opacity: .4; }
+  100% { transform: translateY(-80px) scale(1); opacity: 0; }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-12px); }
+}
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

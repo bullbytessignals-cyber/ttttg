@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rafaqat Clinic – Mohalla Satar Pura, Kharian</title>
+  <meta name="description" content="Rafaqat Clinic offers quality medical care in Mohalla Satar Pura, Kharian. Expert doctors including Dr. Faraz, Dr. Roha Anees, and Dr. Usman." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <style>
+    /* ── Hero ── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(135deg, var(--darker) 0%, #0d2d42 52%, #0a4d65 100%);
+      overflow: hidden;
+    }
+    .hero-bg-pattern {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        radial-gradient(circle at 18% 32%, rgba(13,109,140,.42) 0%, transparent 52%),
+        radial-gradient(circle at 82% 68%, rgba(201,168,76,.16) 0%, transparent 46%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 120px 6vw 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      flex: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(201,168,76,.15);
+      border: 1px solid rgba(201,168,76,.3);
+      color: var(--gold2);
+      font-size: .8rem;
+      padding: 6px 16px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: .13em;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      background: var(--gold2);
+      border-radius: 50%;
+    }
+
+    .hero-left h1 {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      color: var(--white);
+      line-height: 1.15;
+    }
+    .hero-left h1 .highlight { color: var(--gold2); display: block; }
+    .hero-left p {
+      color: rgba(255,255,255,.65);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin: 22px 0 34px;
+      max-width: 480px;
+    }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    .hero-stats {
+      display: flex;
+      gap: 34px;
+      margin-top: 46px;
+      flex-wrap: wrap;
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--gold2);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: .76rem;
+      color: rgba(255,255,255,.48);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-top: 4px;
+    }
+
+    /* Floating doc-card */
+    .hero-card {
+      background: rgba(255,255,255,.07);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 22px;
+      padding: 36px;
+    }
+    .hero-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: var(--white);
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+    .doctor-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .doctor-row:last-child { border-bottom: none; }
+    .doc-avatar {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--darker);
+      flex-shrink: 0;
+    }
+    .doc-avatar.a1 { background: linear-gradient(135deg,#4fc3e8,#1a9cbf); }
+    .doc-avatar.a2 { background: linear-gradient(135deg,var(--gold),var(--gold2)); }
+    .doc-avatar.a3 { background: linear-gradient(135deg,#6fd5b3,#2eaa87); }
+    .doc-info .d-name { color: var(--white); font-weight: 600; font-size: .95rem; }
+    .doc-info .d-spec { color: rgba(255,255,255,.5); font-size: .8rem; }
+    .doc-avail {
+      margin-left: auto;
+      font-size: .74rem;
+      font-weight: 500;
+      background: rgba(46,185,130,.18);
+      color: #5de8b3;
+      padding: 4px 10px;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
+
+    /* Bottom strip */
+    .hero-strip {
+      position: relative; z-index: 2;
+      background: rgba(7,18,28,.5);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding: 18px 6vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .strip-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,.62);
+      font-size: .84rem;
+    }
+    .strip-icon {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: rgba(13,109,140,.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── About (homepage teaser) ── */
+    .home-about {
+      background: var(--white);
+      padding: 90px 6vw;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .about-img-box {
+      border-radius: 24px;
+      background: linear-gradient(135deg, var(--teal2), var(--teal3));
+      height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+    .symbol-cross {
+      width: 80px; height: 80px;
+      position: relative;
+    }
+    .symbol-cross::before, .symbol-cross::after {
+      content: '';
+      position: absolute;
+      background: rgba(255,255,255,.88);
+      border-radius: 6px;
+    }
+    .symbol-cross::before { width: 26px; height: 80px; left: 27px; top: 0; }
+    .symbol-cross::after  { width: 80px; height: 26px; left: 0; top: 27px; }
+    .symbol-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: .04em;
+    }
+    .about-badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: var(--gold);
+      border-radius: 16px;
+      padding: 18px 24px;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(201,168,76,.4);
+    }
+    .about-badge .b-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--darker);
+      line-height: 1;
+    }
+    .about-badge .b-lbl {
+      font-size: .74rem;
+      color: rgba(7,18,28,.6);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-top: 4px;
+    }
+    .about-text h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      color: var(--dark);
+      margin-bottom: 18px;
+    }
+    .about-text h2 span { color: var(--teal); }
+    .about-text p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .check-list { list-style: none; margin: 22px 0 30px; }
+    .check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: .94rem;
+      color: var(--text);
+      margin-bottom: 13px;
+    }
+    .check-icon {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: rgba(13,109,140,.12);
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .7rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 900px) {
+      .hero-content { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-img-wrap { display: none; }
+    }
+    @media (max-width: 580px) {
+      .hero-strip { display: none; }
+      .hero-stats { gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="pre-logo">
+    <div class="pre-cross"><div class="cross-glow"></div></div>
+    <div class="pre-name">
+      <h1>Rafaqat <span>Clinic</span></h1>
+      <p>Mohalla Satar Pura · Kharian</p>
+    </div>
+  </div>
+
+  <div class="ecg-wrap">
+    <svg class="ecg-svg" viewBox="0 0 340 62" preserveAspectRatio="none">
+      <path class="ecg-path"
+        d="M0,31 L40,31 L55,31 L66,10 L76,52 L86,5 L96,57 L106,31 L122,31
+           L162,31 L177,31 L188,10 L198,52 L208,5 L218,57 L228,31 L244,31
+           L284,31 L340,31"/>
+      <circle class="ecg-dot" cx="340" cy="31" r="5"/>
+    </svg>
+  </div>
+
+  <div class="pre-tagline">Your Health · Our Priority</div>
+  <div class="pre-bar"><div class="pre-fill"></div></div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a class="nav-logo" href="index.html">
+    <div class="nav-cross"></div>
+    <span class="nav-logo-text">Rafaqat <span>Clinic</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html"    class="active">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="doctors.html">Doctors</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mobileMenu">
+  <a href="index.html"    class="mob-link">Home</a>
+  <a href="about.html"    class="mob-link">About</a>
+  <a href="doctors.html"  class="mob-link">Doctors</a>
+  <a href="services.html" class="mob-link">Services</a>
+  <a href="contact.html"  class="mob-cta">Contact Us</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-particles" id="particles"></div>
+
+  <div class="hero-content">
+    <div class="hero-left" id="heroLeft">
+      <div class="hero-badge">Est. Kharian · Punjab, Pakistan</div>
+      <h1>
+        Excellence in
+        <span class="highlight">Medical Care</span>
+      </h1>
+      <p>Rafaqat Clinic brings compassionate, quality healthcare to the heart of Mohalla Satar Pura, Kharian — with experienced doctors committed to your well-being.</p>
+      <div class="hero-btns">
+        <a href="doctors.html"  class="btn-primary">Meet Our Doctors</a>
+        <a href="contact.html"  class="btn-outline">Find Us</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Expert Doctors</div>
+        </div>
+        <div>
+          <div class="stat-num">24h</div>
+          <div class="stat-label">Emergency Care</div>
+        </div>
+        <div>
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Dedicated Care</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right" id="heroRight">
+      <div class="hero-card">
+        <div class="hero-card-title">Our Medical Team</div>
+        <div class="doctor-row">
+          <div class="doc-avatar a1">F</div>
+          <div class="doc-info">
+            <div class="d-name">Dr. Faraz</div>
+            <div class="d-spec">General Physician</div>
+          </div>
+          <div class="doc-avail">Available</div>
+        </div>
+        <div class="doctor-row">
+          <div class="doc-avatar a2">R</div>
+          <div class="doc-info">
+            <div class="d-name">Dr. Roha Anees</div>
+            <div class="d-spec">Consultant Physician</div>
+          </div>
+          <div class="doc-avail">Available</div>
+        </div>
+        <div class="doctor-row">
+          <div class="doc-avatar a3">U</div>
+          <div class="doc-info">
+            <div class="d-name">Dr. Usman</div>
+            <div class="d-spec">Medical Officer</div>
+          </div>
+          <div class="doc-avail">Available</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-strip">
+    <div class="strip-item">
+      <div class="strip-icon">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2.2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      Mohalla Satar Pura, Kharian
+    </div>
+    <div class="strip-item">
+      <div class="strip-icon">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      Mon – Sat: 8:00 AM – 9:00 PM
+    </div>
+    <div class="strip-item">
+      <div class="strip-icon">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+      </div>
+      Emergency: Always Available
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT TEASER -->
+<section class="home-about">
+  <div class="about-grid">
+    <div class="about-img-wrap fade-up">
+      <div class="about-img-box">
+        <div class="about-inner">
+          <div class="symbol-cross"></div>
+          <div class="symbol-name">Rafaqat Clinic</div>
+        </div>
+        <div class="about-badge">
+          <div class="b-num">3</div>
+          <div class="b-lbl">Specialist<br>Doctors</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-text fade-up d2">
+      <div class="section-tag">About Us</div>
+      <h2>Trusted Healthcare in<br /><span>Satar Pura, Kharian</span></h2>
+      <p>Rafaqat Clinic is a trusted community healthcare provider located in the heart of Mohalla Satar Pura, Kharian — staffed by qualified, compassionate physicians.</p>
+      <p>We combine clinical excellence with genuine care, ensuring every patient receives the attention and treatment they deserve.</p>
+      <ul class="check-list">
+        <li><div class="check-icon">✓</div> Experienced, qualified medical professionals</li>
+        <li><div class="check-icon">✓</div> Modern diagnostic tools & up-to-date protocols</li>
+        <li><div class="check-icon">✓</div> Clean, comfortable, welcoming environment</li>
+        <li><div class="check-icon">✓</div> Affordable care for the entire community</li>
+      </ul>
+      <a href="about.html" class="btn-primary">Learn More About Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- DOCTORS TEASER -->
+<section class="section bg-light">
+  <div class="section-header">
+    <div class="section-tag">Medical Team</div>
+    <h2 class="section-title">Our <span>Expert Doctors</span></h2>
+    <p class="section-sub">Meet the dedicated physicians making Rafaqat Clinic a centre of excellence in Kharian.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="doctors-grid">
+
+    <div class="doctor-card fade-up d1">
+      <div class="doc-card-header">
+        <div class="doc-avatar-big c1">F</div>
+        <div class="doc-card-name">Dr. Faraz</div>
+        <div class="doc-card-spec">General Physician</div>
+      </div>
+      <div class="doc-card-body">
+        <div class="doc-detail"><div class="doc-detail-icon">🎓</div> MBBS – Medical Graduate</div>
+        <div class="doc-detail"><div class="doc-detail-icon">🏥</div> General Medicine &amp; OPD</div>
+        <div class="doc-tag-row">
+          <span class="doc-tag">General Medicine</span>
+          <span class="doc-tag">Fever &amp; Flu</span>
+        </div>
+      </div>
+      <div class="doc-card-footer">
+        <div class="avail-pill">Available</div>
+        <a href="contact.html" class="appt-btn">Book Visit</a>
+      </div>
+    </div>
+
+    <div class="doctor-card fade-up d2">
+      <div class="doc-card-header">
+        <div class="doc-avatar-big c2">R</div>
+        <div class="doc-card-name">Dr. Roha Anees</div>
+        <div class="doc-card-spec">Consultant Physician</div>
+      </div>
+      <div class="doc-card-body">
+        <div class="doc-detail"><div class="doc-detail-icon">🎓</div> MBBS, FCPS (Medicine)</div>
+        <div class="doc-detail"><div class="doc-detail-icon">🏥</div> Internal Medicine &amp; Consultation</div>
+        <div class="doc-tag-row">
+          <span class="doc-tag">Internal Medicine</span>
+          <span class="doc-tag">Women's Health</span>
+        </div>
+      </div>
+      <div class="doc-card-footer">
+        <div class="avail-pill">Available</div>
+        <a href="contact.html" class="appt-btn">Book Visit</a>
+      </div>
+    </div>
+
+    <div class="doctor-card fade-up d3">
+      <div class="doc-card-header">
+        <div class="doc-avatar-big c3">U</div>
+        <div class="doc-card-name">Dr. Usman</div>
+        <div class="doc-card-spec">Medical Officer</div>
+      </div>
+      <div class="doc-card-body">
+        <div class="doc-detail"><div class="doc-detail-icon">🎓</div> MBBS – Medical Officer</div>
+        <div class="doc-detail"><div class="doc-detail-icon">🏥</div> Emergency &amp; General OPD</div>
+        <div class="doc-tag-row">
+          <span class="doc-tag">Emergency Care</span>
+          <span class="doc-tag">Paediatrics</span>
+        </div>
+      </div>
+      <div class="doc-card-footer">
+        <div class="avail-pill">Available</div>
+        <a href="contact.html" class="appt-btn">Book Visit</a>
+      </div>
+    </div>
+
+  </div>
+  <div style="text-align:center;margin-top:40px;">
+    <a href="doctors.html" class="btn-teal">View All Doctors</a>
+  </div>
+</section>
+
+<!-- SERVICES TEASER -->
+<section class="section bg-white">
+  <div class="section-header">
+    <div class="section-tag">What We Offer</div>
+    <h2 class="section-title">Our <span>Services</span></h2>
+    <p class="section-sub">Comprehensive healthcare designed to meet every patient's needs.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card fade-up d1">
+      <div class="svc-icon t1">🩺</div>
+      <h3>General Consultation</h3>
+      <p>Thorough clinical assessment, diagnosis and treatment for a wide range of conditions.</p>
+    </div>
+    <div class="service-card fade-up d2">
+      <div class="svc-icon t2">💉</div>
+      <h3>Vaccinations &amp; Injections</h3>
+      <p>Routine vaccines and IV/IM injection services administered by qualified staff.</p>
+    </div>
+    <div class="service-card fade-up d3">
+      <div class="svc-icon t3">🩸</div>
+      <h3>Lab &amp; Diagnostics</h3>
+      <p>Blood tests, urinalysis, and essential diagnostics with fast results.</p>
+    </div>
+    <div class="service-card fade-up d4">
+      <div class="svc-icon t4">🚑</div>
+      <h3>Emergency Care</h3>
+      <p>Immediate attention for urgent conditions — we are here when you need us most.</p>
+    </div>
+    <div class="service-card fade-up d5">
+      <div class="svc-icon t5">👶</div>
+      <h3>Paediatric Care</h3>
+      <p>Specialised consultations for children by our experienced physicians.</p>
+    </div>
+    <div class="service-card fade-up d1">
+      <div class="svc-icon t6">💊</div>
+      <h3>Prescription &amp; Pharmacy</h3>
+      <p>Accurate prescriptions with in-clinic dispensing guidance.</p>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:40px;">
+    <a href="services.html" class="btn-teal">View All Services</a>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section style="background:linear-gradient(135deg,var(--dark),var(--teal2));padding:70px 6vw;text-align:center;">
+  <div class="section-tag" style="color:var(--gold2);">Ready to Visit?</div>
+  <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);color:var(--white);margin:12px 0 18px;">Walk in – No Appointment Needed</h2>
+  <p style="color:rgba(255,255,255,.55);max-width:480px;margin:0 auto 32px;line-height:1.75;">Simply come to Mohalla Satar Pura, Kharian during our clinic hours. Our doctors are ready to help you.</p>
+  <a href="contact.html" class="btn-primary">Get Directions</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="nav-logo" href="index.html">
+          <div class="nav-cross"></div>
+          <span class="nav-logo-text">Rafaqat <span>Clinic</span></span>
+        </a>
+        <p>Providing quality, compassionate healthcare to the community of Mohalla Satar Pura, Kharian. Your health is our highest priority.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="doctors.html">Our Doctors</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Our Doctors</h4>
+        <ul>
+          <li><a href="doctors.html">Dr. Faraz</a></li>
+          <li><a href="doctors.html">Dr. Roha Anees</a></li>
+          <li><a href="doctors.html">Dr. Usman</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2024 <span>Rafaqat Clinic</span>, Mohalla Satar Pura, Kharian. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script src="js/preloader.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

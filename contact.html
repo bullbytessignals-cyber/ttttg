@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact – Rafaqat Clinic, Kharian</title>
+  <meta name="description" content="Find Rafaqat Clinic in Mohalla Satar Pura, Kharian. View clinic timings, location, and contact information." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <style>
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    .contact-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 42px;
+      box-shadow: var(--shadow);
+    }
+    .contact-card h3 {
+      font-size: 1.5rem;
+      color: var(--dark);
+      margin-bottom: 30px;
+    }
+
+    /* Timing section */
+    .timing-section {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 42px;
+      box-shadow: var(--shadow);
+      margin-top: 28px;
+    }
+    .timing-section h3 {
+      font-size: 1.4rem;
+      color: var(--dark);
+      margin-bottom: 24px;
+    }
+    .time-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .time-row:last-child { border-bottom: none; }
+    .t-day   { color: var(--text); font-weight: 500; }
+    .t-time  { color: var(--teal); font-weight: 600; font-size: .9rem; }
+    .t-badge {
+      font-size: .74rem;
+      padding: 3px 10px;
+      border-radius: 50px;
+      font-weight: 500;
+    }
+    .t-open  { background: rgba(46,185,130,.12); color: #1e9a6e; }
+    .t-emerg { background: rgba(220,100,100,.1); color: #c44; }
+
+    /* Emergency box */
+    .emergency-box {
+      background: linear-gradient(135deg, rgba(220,50,50,.08), rgba(220,50,50,.04));
+      border: 1px solid rgba(220,50,50,.2);
+      border-radius: var(--r-sm);
+      padding: 20px 24px;
+      margin-top: 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .emerg-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .emergency-box strong { color: #c44; display: block; margin-bottom: 4px; }
+    .emergency-box p { color: var(--muted); font-size: .88rem; line-height: 1.6; }
+
+    /* Walk-in box */
+    .walkin-box {
+      background: rgba(13,109,140,.06);
+      border-left: 4px solid var(--teal);
+      border-radius: 0 var(--r-sm) var(--r-sm) 0;
+      padding: 18px 22px;
+      margin-top: 24px;
+    }
+    .walkin-box strong { color: var(--teal2); display: block; margin-bottom: 5px; font-size: .92rem; }
+    .walkin-box p { color: var(--muted); font-size: .86rem; line-height: 1.65; }
+
+    @media (max-width: 860px) {
+      .contact-layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar" class="solid">
+  <a class="nav-logo" href="index.html">
+    <div class="nav-cross"></div>
+    <span class="nav-logo-text">Rafaqat <span>Clinic</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="doctors.html">Doctors</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="contact.html" class="active nav-cta">Contact Us</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div id="mobileMenu">
+  <a href="index.html"    class="mob-link">Home</a>
+  <a href="about.html"    class="mob-link">About</a>
+  <a href="doctors.html"  class="mob-link">Doctors</a>
+  <a href="services.html" class="mob-link">Services</a>
+  <a href="contact.html"  class="mob-cta">Contact Us</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="breadcrumb ph-anim d1">
+    <a href="index.html">Home</a><span>/</span> Contact Us
+  </div>
+  <h1 class="ph-anim d2">Find <span>Rafaqat Clinic</span></h1>
+  <p class="ph-anim d3">We are located in the heart of Mohalla Satar Pura, Kharian — easy to find and always welcoming.</p>
+</div>
+
+<!-- MAIN CONTACT SECTION -->
+<section class="section bg-light">
+  <div class="contact-layout">
+
+    <!-- Left: Info + Timing -->
+    <div class="fade-up">
+      <div class="contact-card">
+        <h3>Clinic Information</h3>
+
+        <div class="c-item">
+          <div class="c-icon">📍</div>
+          <div class="c-text">
+            <strong>Address</strong>
+            <span>Mohalla Satar Pura, Kharian,<br>Gujrat District, Punjab, Pakistan</span>
+          </div>
+        </div>
+
+        <div class="c-item">
+          <div class="c-icon">👨‍⚕️</div>
+          <div class="c-text">
+            <strong>Doctors on Duty</strong>
+            <span>Dr. Faraz · Dr. Roha Anees · Dr. Usman</span>
+          </div>
+        </div>
+
+        <div class="c-item">
+          <div class="c-icon">🕐</div>
+          <div class="c-text">
+            <strong>General Hours</strong>
+            <span>Mon – Fri: 8:00 AM – 9:00 PM<br>Saturday: 9:00 AM – 6:00 PM<br>Sunday: Emergency Only</span>
+          </div>
+        </div>
+
+        <div class="c-item">
+          <div class="c-icon">🗣️</div>
+          <div class="c-text">
+            <strong>Languages</strong>
+            <span>Urdu · Punjabi · English</span>
+          </div>
+        </div>
+
+        <div class="walkin-box">
+          <strong>Walk-ins Always Welcome</strong>
+          <p>No appointment is required. Simply walk in during our clinic hours and our team will attend to you promptly and courteously.</p>
+        </div>
+
+        <div class="emergency-box">
+          <div class="emerg-icon">🚑</div>
+          <div>
+            <strong>24-Hour Emergency</strong>
+            <p>For medical emergencies outside clinic hours, our doctors are reachable. Please come directly to the clinic for urgent care.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timing-section" style="margin-top:28px;">
+        <h3>Clinic Timings</h3>
+        <div class="time-row">
+          <span class="t-day">Monday</span>
+          <span class="t-time">8:00 AM – 9:00 PM</span>
+          <span class="t-badge t-open">Open</span>
+        </div>
+        <div class="time-row">
+          <span class="t-day">Tuesday</span>
+          <span class="t-time">8:00 AM – 9:00 PM</span>
+          <span class="t-badge t-open">Open</span>
+        </div>
+        <div class="time-row">
+          <span class="t-day">Wednesday</span>
+          <span class="t-time">8:00 AM – 9:00 PM</span>
+          <span class="t-badge t-open">Open</span>
+        </div>
+        <div class="time-row">
+          <span class="t-day">Thursday</span>
+          <span class="t-time">8:00 AM – 9:00 PM</span>
+          <span class="t-badge t-open">Open</span>
+        </div>
+        <div class="time-row">
+          <span class="t-day">Friday</span>
+          <span class="t-time">8:00 AM – 9:00 PM</span>
+          <span class="t-badge t-open">Open</span>
+        </div>
+        <div class="time-row">
+          <span class="t-day">Saturday</span>
+          <span class="t-time">9:00 AM – 6:00 PM</span>
+          <span class="t-badge t-open">Open</span>
+        </div>
+        <div class="time-row">
+          <span class="t-day">Sunday</span>
+          <span class="t-time">Emergency Only</span>
+          <span class="t-badge t-emerg">Emergency</span>
+        </div>
+        <div class="time-row">
+          <span class="t-day">Public Holidays</span>
+          <span class="t-time">Emergency Only</span>
+          <span class="t-badge t-emerg">Emergency</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Map + Doctors quick access -->
+    <div class="fade-up d2" style="display:flex;flex-direction:column;gap:28px;">
+      <div class="map-box" style="height:380px;">
+        <div class="map-placeholder">
+          <div class="pin">📍</div>
+          <h4>Rafaqat Clinic</h4>
+          <p>Mohalla Satar Pura<br>Kharian, Gujrat District<br>Punjab, Pakistan</p>
+          <a href="https://maps.google.com/?q=Mohalla+Satar+Pura+Kharian+Gujrat+Punjab+Pakistan" target="_blank" rel="noopener noreferrer">
+            Open in Google Maps →
+          </a>
+        </div>
+      </div>
+
+      <!-- Doctor quick cards -->
+      <div style="background:var(--white);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);">
+        <h3 style="font-size:1.3rem;color:var(--dark);margin-bottom:22px;">Doctors on Shift</h3>
+
+        <div style="display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);">
+          <div class="doc-avatar-big c1" style="width:52px;height:52px;font-size:1.3rem;">F</div>
+          <div>
+            <div style="font-weight:600;color:var(--dark);font-size:.95rem;">Dr. Faraz</div>
+            <div style="color:var(--muted);font-size:.82rem;">General Physician · Morning &amp; Evening</div>
+          </div>
+          <div class="avail-pill" style="margin-left:auto;">Available</div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);">
+          <div class="doc-avatar-big c2" style="width:52px;height:52px;font-size:1.3rem;">R</div>
+          <div>
+            <div style="font-weight:600;color:var(--dark);font-size:.95rem;">Dr. Roha Anees</div>
+            <div style="color:var(--muted);font-size:.82rem;">Consultant Physician · Afternoon</div>
+          </div>
+          <div class="avail-pill" style="margin-left:auto;">Available</div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:14px;padding:14px 0;">
+          <div class="doc-avatar-big c3" style="width:52px;height:52px;font-size:1.3rem;">U</div>
+          <div>
+            <div style="font-weight:600;color:var(--dark);font-size:.95rem;">Dr. Usman</div>
+            <div style="color:var(--muted);font-size:.82rem;">Medical Officer · Evening &amp; Emergency</div>
+          </div>
+          <div class="avail-pill" style="margin-left:auto;">Available</div>
+        </div>
+
+        <a href="doctors.html" class="btn-teal" style="display:block;text-align:center;margin-top:20px;">View Full Doctor Profiles</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LOCATION DESCRIPTION -->
+<section class="section bg-white">
+  <div style="max-width:780px;margin:0 auto;text-align:center;" class="fade-up">
+    <div class="section-tag">How to Find Us</div>
+    <h2 class="section-title" style="margin-bottom:18px;">Located in <span>Mohalla Satar Pura</span></h2>
+    <p style="color:var(--muted);line-height:1.85;margin-bottom:16px;">Rafaqat Clinic is situated in the vibrant neighbourhood of Mohalla Satar Pura, Kharian — in Gujrat District, Punjab. We are easily accessible from the main road and well-known to locals in the area.</p>
+    <p style="color:var(--muted);line-height:1.85;margin-bottom:30px;">Whether you are coming from Kharian city centre, the GT Road direction, or surrounding villages, our clinic is a short drive or walk away. Ample space is available for parking near the clinic entrance.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://maps.google.com/?q=Mohalla+Satar+Pura+Kharian+Gujrat+Punjab+Pakistan" target="_blank" rel="noopener noreferrer" class="btn-primary">Get Directions</a>
+      <a href="services.html" class="btn-teal">Our Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- TIMING REMINDER BANNER -->
+<section style="background:linear-gradient(135deg,var(--dark),var(--teal2));padding:60px 6vw;">
+  <div class="section-header" style="margin-bottom:40px;">
+    <div class="section-tag" style="color:var(--gold2);">Opening Hours</div>
+    <h2 class="section-title light">When to <span>Visit Us</span></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="timing-grid">
+    <div class="timing-row fade-up d1">
+      <div class="timing-day">Monday – Friday</div>
+      <div class="timing-time">8:00 AM – 9:00 PM</div>
+    </div>
+    <div class="timing-row fade-up d2">
+      <div class="timing-day">Saturday</div>
+      <div class="timing-time">9:00 AM – 6:00 PM</div>
+    </div>
+    <div class="timing-row fade-up d1">
+      <div class="timing-day">Sunday</div>
+      <div class="timing-time timing-closed">Emergency Only</div>
+    </div>
+    <div class="timing-row fade-up d2">
+      <div class="timing-day">Public Holidays</div>
+      <div class="timing-time timing-closed">Emergency Only</div>
+    </div>
+  </div>
+  <div class="timing-note fade-up" style="margin-top:28px;">
+    ⚡ Emergency care is available at all hours — day or night. Please come directly to the clinic.
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="nav-logo" href="index.html">
+          <div class="nav-cross"></div>
+          <span class="nav-logo-text">Rafaqat <span>Clinic</span></span>
+        </a>
+        <p>Providing quality, compassionate healthcare to the community of Mohalla Satar Pura, Kharian.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="doctors.html">Our Doctors</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Our Doctors</h4>
+        <ul>
+          <li><a href="doctors.html">Dr. Faraz</a></li>
+          <li><a href="doctors.html">Dr. Roha Anees</a></li>
+          <li><a href="doctors.html">Dr. Usman</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2024 <span>Rafaqat Clinic</span>, Mohalla Satar Pura, Kharian. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

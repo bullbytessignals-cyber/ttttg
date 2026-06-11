@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services – Rafaqat Clinic, Kharian</title>
+  <meta name="description" content="Explore the full range of medical services at Rafaqat Clinic — consultations, diagnostics, emergency care, vaccinations, and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <style>
+    /* ── Extended service cards ── */
+    .ext-service-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .ext-service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow2); }
+
+    .esc-header {
+      padding: 32px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .esc-icon {
+      width: 64px; height: 64px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.7rem;
+      flex-shrink: 0;
+    }
+    .esc-header h3 { font-size: 1.2rem; color: var(--dark); }
+    .esc-header p  { color: var(--muted); font-size: .84rem; margin-top: 5px; }
+
+    .esc-divider { height: 1px; background: var(--border); margin: 0 32px; }
+
+    .esc-body { padding: 24px 32px 30px; flex: 1; }
+    .esc-body ul { list-style: none; }
+    .esc-body ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .88rem;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .esc-body ul li::before {
+      content: '→';
+      color: var(--teal);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .services-extended {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* Process steps */
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 32px; left: 10%; right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--teal), var(--gold));
+      z-index: 0;
+    }
+    .process-step {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .ps-num {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 3px solid var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--teal);
+      margin: 0 auto 18px;
+      box-shadow: 0 4px 16px rgba(13,109,140,.2);
+    }
+    .process-step h3 { font-size: 1rem; color: var(--white); margin-bottom: 8px; }
+    .process-step p  { color: rgba(255,255,255,.55); font-size: .84rem; line-height: 1.65; }
+
+    /* FAQ */
+    .faq-list { max-width: 780px; margin: 0 auto; }
+    .faq-item {
+      background: var(--white);
+      border-radius: var(--r-sm);
+      margin-bottom: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .faq-question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--dark);
+      font-size: .96rem;
+      gap: 12px;
+      user-select: none;
+    }
+    .faq-question::after {
+      content: '+';
+      font-size: 1.3rem;
+      color: var(--teal);
+      flex-shrink: 0;
+      transition: transform .3s;
+    }
+    .faq-item.open .faq-question::after { transform: rotate(45deg); }
+    .faq-answer {
+      display: none;
+      padding: 0 24px 20px;
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.75;
+    }
+    .faq-item.open .faq-answer { display: block; }
+
+    @media (max-width: 900px) {
+      .services-extended { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: repeat(2, 1fr); }
+      .process-steps::before { display: none; }
+    }
+    @media (max-width: 560px) {
+      .process-steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar" class="solid">
+  <a class="nav-logo" href="index.html">
+    <div class="nav-cross"></div>
+    <span class="nav-logo-text">Rafaqat <span>Clinic</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="doctors.html">Doctors</a></li>
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div id="mobileMenu">
+  <a href="index.html"    class="mob-link">Home</a>
+  <a href="about.html"    class="mob-link">About</a>
+  <a href="doctors.html"  class="mob-link">Doctors</a>
+  <a href="services.html" class="mob-link">Services</a>
+  <a href="contact.html"  class="mob-cta">Contact Us</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="breadcrumb ph-anim d1">
+    <a href="index.html">Home</a><span>/</span> Services
+  </div>
+  <h1 class="ph-anim d2">Our <span>Medical Services</span></h1>
+  <p class="ph-anim d3">Comprehensive healthcare services tailored to the needs of every patient at Rafaqat Clinic, Kharian.</p>
+</div>
+
+<!-- SERVICE OVERVIEW GRID -->
+<section class="section bg-light">
+  <div class="section-header">
+    <div class="section-tag">All Services</div>
+    <h2 class="section-title">What We <span>Offer</span></h2>
+    <p class="section-sub">From routine consultations to emergency care — we cover it all.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card fade-up d1">
+      <div class="svc-icon t1">🩺</div>
+      <h3>General Consultation</h3>
+      <p>Thorough clinical assessments for common illnesses, chronic conditions, and preventive care.</p>
+    </div>
+    <div class="service-card fade-up d2">
+      <div class="svc-icon t2">💉</div>
+      <h3>Vaccinations &amp; Injections</h3>
+      <p>Full range of routine vaccines plus IV and IM injection services by trained staff.</p>
+    </div>
+    <div class="service-card fade-up d3">
+      <div class="svc-icon t3">🩸</div>
+      <h3>Lab &amp; Diagnostics</h3>
+      <p>Blood tests, urinalysis, and essential investigations with fast turnaround results.</p>
+    </div>
+    <div class="service-card fade-up d4">
+      <div class="svc-icon t4">🚑</div>
+      <h3>Emergency Care</h3>
+      <p>Immediate medical attention for urgent and acute conditions — we are always here.</p>
+    </div>
+    <div class="service-card fade-up d5">
+      <div class="svc-icon t5">👶</div>
+      <h3>Paediatric Care</h3>
+      <p>Dedicated consultations for infants, children, and adolescents.</p>
+    </div>
+    <div class="service-card fade-up d1">
+      <div class="svc-icon t6">💊</div>
+      <h3>Prescription &amp; Pharmacy</h3>
+      <p>Accurate prescriptions with in-clinic dispensing guidance for common medications.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXTENDED SERVICE DETAIL -->
+<section class="section bg-white">
+  <div class="section-header">
+    <div class="section-tag">In Detail</div>
+    <h2 class="section-title">Service <span>Details</span></h2>
+    <p class="section-sub">A closer look at what each service includes at Rafaqat Clinic.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="services-extended">
+
+    <div class="ext-service-card fade-up d1">
+      <div class="esc-header">
+        <div class="esc-icon t1">🩺</div>
+        <div>
+          <h3>General Consultation</h3>
+          <p>Mon – Sat · Walk-in welcome</p>
+        </div>
+      </div>
+      <div class="esc-divider"></div>
+      <div class="esc-body">
+        <ul>
+          <li>Full clinical history taking and examination</li>
+          <li>Diagnosis of common and complex conditions</li>
+          <li>Personalised treatment and medication plans</li>
+          <li>Referral to specialist if required</li>
+          <li>Follow-up appointment scheduling</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ext-service-card fade-up d2">
+      <div class="esc-header">
+        <div class="esc-icon t4">🚑</div>
+        <div>
+          <h3>Emergency Care</h3>
+          <p>Available 24 hours for urgent cases</p>
+        </div>
+      </div>
+      <div class="esc-divider"></div>
+      <div class="esc-body">
+        <ul>
+          <li>Rapid assessment for acute conditions</li>
+          <li>Trauma and wound management</li>
+          <li>Resuscitation support</li>
+          <li>IV fluids and medication administration</li>
+          <li>Stabilisation and transfer coordination</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ext-service-card fade-up d3">
+      <div class="esc-header">
+        <div class="esc-icon t3">🩸</div>
+        <div>
+          <h3>Lab &amp; Diagnostics</h3>
+          <p>Fast results, accurate reporting</p>
+        </div>
+      </div>
+      <div class="esc-divider"></div>
+      <div class="esc-body">
+        <ul>
+          <li>Complete blood count (CBC)</li>
+          <li>Blood sugar (fasting &amp; random)</li>
+          <li>Urine analysis</li>
+          <li>Liver and kidney function tests</li>
+          <li>ECG and basic cardiac assessment</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ext-service-card fade-up d4">
+      <div class="esc-header">
+        <div class="esc-icon t5">👶</div>
+        <div>
+          <h3>Paediatric Care</h3>
+          <p>Dedicated children's health services</p>
+        </div>
+      </div>
+      <div class="esc-divider"></div>
+      <div class="esc-body">
+        <ul>
+          <li>Newborn and infant health checks</li>
+          <li>Immunisation and vaccine schedules</li>
+          <li>Growth and developmental monitoring</li>
+          <li>Treatment of common childhood illnesses</li>
+          <li>Nutritional and parenting guidance</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- VISIT PROCESS -->
+<section class="section bg-dark">
+  <div class="section-header">
+    <div class="section-tag" style="color:var(--gold2);">How It Works</div>
+    <h2 class="section-title light">Your Visit, <span>Step by Step</span></h2>
+    <p class="section-sub light">Simple, smooth, and stress-free from arrival to discharge.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="process-steps">
+    <div class="process-step fade-up d1">
+      <div class="ps-num">1</div>
+      <h3>Walk In</h3>
+      <p>No appointment needed. Simply arrive at the clinic during our opening hours.</p>
+    </div>
+    <div class="process-step fade-up d2">
+      <div class="ps-num">2</div>
+      <h3>Registration</h3>
+      <p>Quick registration at the front desk with your basic details and reason for visit.</p>
+    </div>
+    <div class="process-step fade-up d3">
+      <div class="ps-num">3</div>
+      <h3>Consultation</h3>
+      <p>Meet with one of our expert doctors for a thorough examination and diagnosis.</p>
+    </div>
+    <div class="process-step fade-up d4">
+      <div class="ps-num">4</div>
+      <h3>Treatment &amp; Discharge</h3>
+      <p>Receive your prescription, any needed tests, and follow-up instructions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section bg-light">
+  <div class="section-header">
+    <div class="section-tag">FAQs</div>
+    <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="faq-list fade-up">
+    <div class="faq-item">
+      <div class="faq-question">Do I need an appointment to visit?</div>
+      <div class="faq-answer">No, Rafaqat Clinic operates on a walk-in basis. You are welcome to visit during our opening hours without any prior appointment.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">What are the clinic's opening hours?</div>
+      <div class="faq-answer">We are open Monday to Friday 8:00 AM – 9:00 PM, Saturday 9:00 AM – 6:00 PM. Emergency services are available 24 hours.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Are services affordable for all patients?</div>
+      <div class="faq-answer">Yes. Rafaqat Clinic is committed to providing affordable care to the entire community. Consultation fees are kept reasonable and transparent.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Do you offer children's healthcare?</div>
+      <div class="faq-answer">Yes. Our doctors are trained in paediatric care and routinely see infants, children, and teenagers for both routine and acute health concerns.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">What should I bring to my appointment?</div>
+      <div class="faq-answer">Please bring any previous medical records, test reports, or prescriptions you have. If this is a routine visit, no documents are strictly required.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:var(--white);padding:70px 6vw;text-align:center;">
+  <div class="section-tag">Visit Us</div>
+  <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.7rem,3.5vw,2.4rem);color:var(--dark);margin:12px 0 18px;">Ready to <span style="color:var(--teal);">Get Treated?</span></h2>
+  <p style="color:var(--muted);max-width:460px;margin:0 auto 32px;line-height:1.75;">Walk in to Rafaqat Clinic any time during our hours. Our dedicated team is always ready to help.</p>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+    <a href="contact.html" class="btn-primary">Find Our Location</a>
+    <a href="doctors.html" class="btn-teal">Meet the Doctors</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="nav-logo" href="index.html">
+          <div class="nav-cross"></div>
+          <span class="nav-logo-text">Rafaqat <span>Clinic</span></span>
+        </a>
+        <p>Providing quality, compassionate healthcare to the community of Mohalla Satar Pura, Kharian.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="doctors.html">Our Doctors</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Our Doctors</h4>
+        <ul>
+          <li><a href="doctors.html">Dr. Faraz</a></li>
+          <li><a href="doctors.html">Dr. Roha Anees</a></li>
+          <li><a href="doctors.html">Dr. Usman</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2024 <span>Rafaqat Clinic</span>, Mohalla Satar Pura, Kharian. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  /* FAQ accordion */
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>
